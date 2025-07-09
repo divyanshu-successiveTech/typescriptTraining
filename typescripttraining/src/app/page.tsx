@@ -17,7 +17,8 @@ export default function Home() {
     <button onClick={()=> router.push('/Assignment-1')}>To Day-1</button><br/><br/>
     <button onClick={()=> router.push('/Assignment-2')}>To Day-2</button><br/><br/>
     <button onClick={()=> router.push('/Assessment')}>To Assessment</button><br/><br/>
-    
+    <button onClick={()=> router.push('/Assignment-3')}>To Day-3</button><br/><br/>
+
   
   </>
  
