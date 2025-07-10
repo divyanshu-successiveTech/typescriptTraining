@@ -11,15 +11,15 @@ const Slide = () =>{
     let [isPaused,setIsPause] = useState<boolean>(false);
     
 
-    let [i,seti]=useState<number>(1);
+    let [index,setIndex]=useState<number>(1);
     useEffect(()=>{
         setTimeout(()=>{
             
             if(!isPaused){
                 setImage(()=>{
-                    return arr[i%arr.length]
+                    return arr[index%arr.length]
                 });
-                seti(i+1);
+                setIndex(index+1);
             }
             
             

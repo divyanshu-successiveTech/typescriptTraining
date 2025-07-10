@@ -3,6 +3,11 @@
 
 import { createContext ,useState } from "react";
 
+enum themeMode{
+  light="light",
+  dark="dark"
+}
+
 
 interface ThemeContextType {
   theme: string;
@@ -10,16 +15,16 @@ interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: "light",
+  theme: themeMode.light,
   toggleTheme: () => {}
 });
 
 export const ThemeProvider = ({children}:any) =>{
 
-    const [theme,setTheme]= useState('light');
+    const [theme,setTheme]= useState(themeMode.light);
 
     const toggleTheme = () =>{
-        setTheme((prev)=>(prev === 'light'?'dark':'light'))     
+        setTheme((prev)=>(prev === themeMode.light?themeMode.dark:themeMode.light))     
     }
 
     return(

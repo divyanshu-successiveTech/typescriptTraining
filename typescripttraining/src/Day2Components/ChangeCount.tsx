@@ -7,8 +7,8 @@ import { HandleCount } from "./HandleCount";
 export default function ChangeCount(){
 
     
-    const handleClick=useCallback((val:number)=>{
-        return val+1;
+    const handleClick=useCallback((value:number)=>{
+        return value+1;
     },[])
 
     return (

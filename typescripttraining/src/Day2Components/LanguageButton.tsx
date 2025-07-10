@@ -7,13 +7,21 @@ type PropText={
     text:string;
 }
 
+enum Language{
+    spanish="spanish",
+    english="english",
+    englishText="This is sample text",
+    spanishText="Este es un texto de muestra"
+
+}
+
 export const LanguageButton=({text}:PropText)=>{
 
     const {language,changeLang} = useContext(Languagecontext);
 
     let curr =text;
 
-    {curr = language === 'spanish'?"This is sample text" : "Este es un texto de muestra"}
+    {curr = language === Language.spanish?Language.englishText : Language.spanishText}
 
     return(
         <>

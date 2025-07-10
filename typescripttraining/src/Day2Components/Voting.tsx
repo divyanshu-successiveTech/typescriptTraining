@@ -10,8 +10,14 @@ type VoteState = {
   C: number;
 };
 
+enum Vote{
+  A="voteA",
+  B="voteB",
+  C="voteC",
+}
 
-type VoteAction = { type: 'voteA' } | { type: 'voteB' } | { type: 'voteC' };
+
+type VoteAction = { type: Vote.A } | { type: Vote.B } | { type: Vote.C };
 
 const voteReducer = (state: VoteState, action: VoteAction): VoteState => {
   switch (action.type) {
@@ -41,9 +47,9 @@ export default function Voting() {
     <>
       <h1>Voting App</h1>
       
-        <button onClick={() => dispatch({ type: 'voteA' })}>Vote for A</button>
-        <button onClick={() => dispatch({ type: 'voteB' })}>Vote for B</button>
-        <button onClick={() => dispatch({ type: 'voteC' })}>Vote for C</button>
+        <button onClick={() => dispatch({ type: Vote.A })}>Vote for A</button>
+        <button onClick={() => dispatch({ type: Vote.B })}>Vote for B</button>
+        <button onClick={() => dispatch({ type: Vote.C })}>Vote for C</button>
       
 
       <h3>Current Votes</h3>

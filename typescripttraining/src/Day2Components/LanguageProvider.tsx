@@ -6,10 +6,13 @@ interface Language{
     language:string;
     changeLang : ()=>void;
 }
-
+enum Lang{
+    english="english",
+    spanish="spanish"
+}
 
 export const Languagecontext= createContext<Language>({
-    language:"english",
+    language:Lang.english,
     changeLang: () => {}
 });
 
@@ -18,7 +21,7 @@ export const LanguageProvider =({children}:{children:ReactNode})=>{
 
 
     const changeLang =()=>{
-        setLanguage((prev)=>( prev ==='spanish' ? 'english':'spanish'))
+        setLanguage((prev)=>( prev ===Lang.spanish ? Lang.english:Lang.spanish))
     }
 
 

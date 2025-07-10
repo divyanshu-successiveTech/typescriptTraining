@@ -7,6 +7,11 @@ interface TasksItem{
     complete:boolean;
 }
 
+enum taskStatus{
+  complete="completed",
+  incomplete="incomplete"
+}
+
 export default function CompleteTasks() {
  
   const [task, setTask] = useState<TasksItem[]>([
@@ -25,7 +30,7 @@ export default function CompleteTasks() {
     <div>
       {task.map((curr,index) => (
         <div key={index}>
-          <p>{curr.task} {curr.complete?`completed`:`incomplete`}</p>
+          <p>{curr.task} {curr.complete?taskStatus.complete:taskStatus.incomplete}</p>
           <button onClick={()=>taskCompletion(curr.id)}>Update</button>
         </div>
       ))}
