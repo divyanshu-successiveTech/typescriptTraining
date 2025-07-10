@@ -2,7 +2,11 @@
 "use client"
 import { useEffect, useState } from "react"
 
+enum Turn{
+      user="user",
+      computer="comp"
 
+    }
 function AssessmentQuestion(){
 
     type SquareValue = string | number;
@@ -10,7 +14,7 @@ function AssessmentQuestion(){
 
 
     const[ask,setAsk] = useState<string>("")
-    const [turn, setTurn] = useState<string>("user");
+    const [turn, setTurn] = useState<string>(Turn.user);
     const [AllSquares, setAllSquares] = useState<(string|number)[]>(Array(9).fill(-1));
     const [winner, setWinner] = useState<string>("");
     
@@ -32,10 +36,16 @@ function AssessmentQuestion(){
       ];
 
       for (let [a, b, c] of lines) {
+        let curr=""
         if (squares[a] !== -1 && squares[a] === squares[b] && squares[a] === squares[c]) {
             let str=""
             str+=squares[a];
-          return str
+            if (str==ask){
+              curr=Turn.user;
+            }else{
+              curr=Turn.computer
+            }
+          return curr
         }
       }
 
@@ -47,7 +57,7 @@ function AssessmentQuestion(){
     }
   
     function handleClick(i:number) {
-      if (turn !== "user" || AllSquares[i] !== -1 || winner) return;
+      if (turn !== Turn.user || AllSquares[i] !== -1 || winner) return;
 
     const newSquares = [...AllSquares];
     newSquares[i] = ask;
@@ -57,7 +67,7 @@ function AssessmentQuestion(){
     if (result) {
       setWinner(result);
     } else {
-      setTurn("comp");
+      setTurn(Turn.computer);
     }
   }
 
@@ -72,7 +82,7 @@ function AssessmentQuestion(){
 
   function comp(){
 
-    if (turn !== "comp" || winner) return;
+    if (turn !== Turn.computer || winner) return;
 
     let attempts = 0;
     let obt = generateRandom();
@@ -91,7 +101,7 @@ function AssessmentQuestion(){
       if (result) {
         setWinner(result);
       } else {
-        setTurn("user");
+        setTurn(Turn.user);
       }
     }
 
@@ -102,7 +112,7 @@ function AssessmentQuestion(){
 
 
    useEffect(() => {
-    if (turn === "comp") {
+    if (turn === Turn.computer) {
       const timeout = setTimeout(() => comp(), 300);
       return () => clearTimeout(timeout);
     }
