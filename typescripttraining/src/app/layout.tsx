@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/Day2Components/ThemeProvider";
 import { LanguageProvider } from "@/Day2Components/LanguageProvider";
+import { ParentProvider } from "@/Day3Components/ParentProvider";
+import { LightLoginProvider } from "@/Day3Components/LIghtLoginProvider";
+import { ValidationProvider } from "@/Day3Components/ValidationContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +32,15 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ThemeProvider>
           <LanguageProvider>
-            {children}
+            <ParentProvider>
+              <LightLoginProvider>
+                <ValidationProvider>
+                  
+              {children}
+                </ValidationProvider>
+              </LightLoginProvider>
+            </ParentProvider>
+            
           </LanguageProvider>
         </ThemeProvider>
         
